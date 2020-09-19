@@ -1,0 +1,29 @@
+#Nesse exemplo, fiz uma função que recebe um vetor como entrada, e para caso o valor tenha no vetor a função retornar True ou False e quantidade de repetições.
+
+
+def Procurar_elemento(Vetor_de_entrada, elemento_a_procurar,Tamanho_vetor):
+  Quantidade_de_repetições = 0
+  for i in range(Tamanho_vetor):
+    if elemento_a_procurar == Vetor_de_entrada[i]:
+      Quantidade_de_repetições = Quantidade_de_repetições + 1
+  if Quantidade_de_repetições > 0:
+    print("Quantidade de repetições: ",Quantidade_de_repetições)
+    return True
+  else:
+    return False  
+
+
+from random import randint
+tamanho_vetor = 15
+Vetor = []
+for i in range(tamanho_vetor):
+  elemento = randint(0,5)
+  Vetor.append(elemento)
+
+Elemento_a_procurar = int(input("Elemento a procurar: "))  
+
+if Procurar_elemento(Vetor, Elemento_a_procurar, tamanho_vetor):
+  print("Elemento {} encontrado".format(Elemento_a_procurar))
+else:
+  print("Elemento {} não encontrado".format(Elemento_a_procurar))
+print(Vetor)  

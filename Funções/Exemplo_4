@@ -1,0 +1,18 @@
+#Nesse exemplo fiz uma função que recebe um vetor de entrada, e nas posições em que os elementos são pares, os mesmos são substituidos por 99.
+
+def Valores_par_99(Vetor_entrada):
+  for i in range(len(Vetor_entrada)):
+    if Vetor_entrada[i] % 2 == 0:
+      Vetor_entrada[i] = 99
+  return Vetor_entrada    
+
+
+from random import randint
+Tamanho_vetor = 5
+Vetor = []
+for i in range(Tamanho_vetor):
+  elemento = randint(0,5)
+  Vetor.append(elemento)
+
+print("Vetor Original: ",Vetor)
+print("Vetor alterado pela função: ",Valores_par_99(Vetor))

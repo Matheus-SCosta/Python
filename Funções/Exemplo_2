@@ -1,0 +1,14 @@
+#Nesse exemplo o programa pede 3 números ao usuário e a função informa qual o menor
+
+def Menor_número(numero1,numero2,numero3):
+    if numero1<numero2 and numero1<numero3:
+        return numero1
+    elif numero2<numero1 and numero2<numero3:
+        return numero2
+    elif numero3<numero1 and numero3<numero2:
+        return numero3
+
+número1=int(input("Nº: "))
+número2=int(input("Nº: "))
+número3=int(input("Nº: "))
+print("O menor número é: {}".format(Menor_número(número1,número2,número3)))

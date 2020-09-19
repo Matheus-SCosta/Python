@@ -1,0 +1,16 @@
+#Nesse exemplo fiz uma função que recebe um vetor de entrada, e calcula a soma dos valores do Vetor
+
+def Soma_elementos_do_vetor(Vetor_entrada):
+  valor_da_soma = 0
+  for i in range(len(Vetor_entrada)):
+    valor_da_soma = valor_da_soma + Vetor_entrada[i]
+  return valor_da_soma
+
+from random import randint
+Tamanho_vetor = 5
+Vetor = []
+for i in range(Tamanho_vetor):
+  elemento = randint(0,5)
+  Vetor.append(elemento)
+print("Soma dos valores do Vetor: ",Soma_elementos_do_vetor(Vetor))
+print("Vetor: ",Vetor)
