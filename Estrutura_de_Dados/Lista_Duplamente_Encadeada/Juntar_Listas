@@ -1,0 +1,72 @@
+#Exemplo de geração de uma lista encadeada (lista3) com o conteúdo de 2 lista encadeada juntas (lista1 e lista2). 
+
+class No:
+  def __init__(self, carga, anterior = None, proximo = None):
+    self.carga = carga
+    self.anterior = anterior
+    self.proximo = proximo
+
+class Lista_Duplamente_encadeada:
+  def __init__(self, cabeca = None, cauda = None):
+    self.cabeca = cabeca
+    self.cauda = cauda
+
+
+  def imprimir(self):
+    if self.cabeca is None:
+      print("Lista vazia")
+      return
+    atual = self.cabeca
+    while atual:
+      print(atual.carga)
+      atual = atual.proximo
+
+
+  def inserir_inicio1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cabeca is None:   #lista vazia
+      self.cabeca = self.cauda = valor
+      return
+    valor.proximo = self.cabeca  #o proximo do valor será a carga da cabeca
+    self.cabeca.anterior = valor #o anterior da cabeca será a carga do novo valor
+    self.cabeca = valor #declarando que a cabeça será o novo valor
+    
+  def inserir_final1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cauda is None:     #lista vazia
+      self.cauda = self.cabeca = valor
+      return
+    valor.anterior = self.cauda   #o anterior do novo valor será a carga da cauda
+    self.cauda.proximo = valor  #o proximo da cauda será a carga do novo valor
+    self.cauda = valor  #declarando que a cauda será o novo valor
+    
+
+  def juntarlistas(self,lista1,lista2):
+    atual = lista1.cabeca
+    while atual.proximo:
+      lista3.inserir_final1(atual.carga)  #pegando os elementos da lista1 e inserindo na lista3 que a principio estava vazia
+      atual = atual.proximo  
+    atual.proximo = lista2.cabeca   #quando não tiver mais atual.proximo (ultimo elemento da primeira lista), o atual.proximo será a cabeca da segunda lista
+    lista2.cabeca.anterior = lista1.cauda    #o anterior da cabeca da segunda lista será o ultimo da primeira
+    while atual:
+      lista3.inserir_final1(atual.carga) #a cada elemento da lista2, será inserido na lista3
+      atual = atual.proximo
+      
+print("Lista 1: \n")
+lista1 = Lista_Duplamente_encadeada()
+lista1.inserir_inicio1(7)
+lista1.inserir_inicio1(1)
+lista1.imprimir()
+print("\n")
+print("Lista 2: \n")
+lista2 = Lista_Duplamente_encadeada()
+lista2.inserir_inicio1(8)
+lista2.inserir_inicio1(4)
+lista2.inserir_inicio1(3)
+lista2.imprimir()
+print("\n")
+print("Lista 3: \n")
+lista3 = Lista_Duplamente_encadeada()   #preferi instanciar lista3 como lista_duplamente_encadeada() do que cria-la dentro do método juntarlistas(), mas também fiz dessa forma e também deu certo, sendo que não consegui utiliza-la para outros métodos fora do método juntarlistas(), então preferi fazer assim.
+lista3.juntarlistas(lista1, lista2)
+lista3.imprimir()
+
