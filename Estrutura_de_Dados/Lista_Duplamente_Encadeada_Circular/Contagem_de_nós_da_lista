@@ -1,0 +1,81 @@
+#Exemplo de contagem da quantidade de nós (elementos) de uma determinada lista duplamente encadeada circular. A diferença desse tipo de lista para a duplamente encadeada é que a cabeça possui um apontador para a cauda, e a cauda possui um apontador para a cabeça
+#Não verifique com a página traduzida
+
+class No:
+  def __init__(self, carga, anterior = None, proximo = None):
+    self.carga = carga
+    self.anterior = anterior
+    self.proximo = proximo
+
+class Lista_Duplamente_encadeada:
+  def __init__(self, cabeca = None, cauda = None):
+    self.cabeca = cabeca
+    self.cauda = cauda
+
+
+  def imprimir(self):
+    if self.cabeca is None:
+      print("Lista vazia")
+      return
+    atual = self.cabeca
+    print(atual.carga)                                                  # Já dou o print no primeiro elemento (cabeca), devido as condições do while
+    if atual.proximo is not None:                                       # Só entrará nessa condição para entrar no laço, caso a lista tenha mais que 1 nó
+      atual = atual.proximo                                             # E passo o atual para o segundo elemento devido as condições do while
+      while atual is not self.cabeca:
+        print(atual.carga)
+        atual = atual.proximo
+
+
+  def inserir_inicio1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cabeca is None:   #lista vazia
+      self.cabeca = self.cauda = valor
+      return
+    valor.proximo = self.cabeca                                         # O proximo do valor será a carga da cabeca
+    self.cabeca.anterior = valor                                        # O anterior da cabeca será a carga do novo valor
+    self.cabeca = valor                                                 # Declarando que a cabeça será o novo valor
+    self.cauda.proximo = self.cabeca
+    self.cabeca.anterior = self.cauda
+
+  def inserir_final1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cauda is None:                                              # Lista vazia
+      self.cauda = self.cabeca = valor
+      return
+    valor.anterior = self.cauda                                         # O anterior do novo valor será a carga da cauda
+    self.cauda.proximo = valor                                          # O proximo da cauda será a carga do novo valor
+    self.cauda = valor                                                  # Declarando que a cauda será o novo valor
+    self.cauda.proximo = self.cabeca
+    self.cabeca.anterior = self.cauda
+
+  def contar_elementos_da_lista(self, lista):
+    contador = 0                                                        # Contador
+    atual = lista.cabeca                                                # atual é referencia para a cabeca da da lista passada como argumento (lista)
+    contador = contador + 1                                             # Para contar a cabeca como 1 elemento da lista
+    if atual.proximo is not None:                                       # Só entra no laço se houver mais que um nó na lista
+      atual = atual.proximo                                             # Passo o atual para o proximo para dentro do laço contar a partir do 2º elemento da lista, pois caso contrario não entra no laço, devido as condições do while
+      while atual is not lista.cabeca:                                  # Vai ficar no laço até o ultimo item da lista passada por argumento (cauda)
+        contador = contador + 1
+        atual = atual.proximo
+    print("A lista possui {} elementos".format(contador))  
+
+
+lista2 = Lista_Duplamente_encadeada()
+lista2.inserir_final1(10)
+lista2.inserir_final1(9)
+
+
+lista1 = Lista_Duplamente_encadeada()
+lista1.inserir_final1(10)
+lista1.inserir_final1(11)
+lista1.inserir_final1(12)
+lista1.inserir_final1(13)
+lista1.inserir_inicio1(9)
+lista1.contar_elementos_da_lista(lista2)
+
+
+
+
+
+
+
