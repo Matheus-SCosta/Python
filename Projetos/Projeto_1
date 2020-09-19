@@ -1,0 +1,139 @@
+# NESSE PROJETO, É PASSADO UM ARQUIVO COMO ENTRADA E O PROGRAMA CALCULA OS VALORES DE PING, PING COMPLETOS, PINGS INCOMPLETOS, MAIOR, MENOR E PINGS MÉDIOS, LATÊNCIA ENTRE CADA PING, MAIOR, MENOR E MÉDIA DE LATENCIA, PORCENTAGEM DE PERDA DE PACOTES, E RETORNA ESSES DADOS DE FORMA FORMATADA
+
+request = [] 
+reply = [] 
+ping = [] 
+jitter = [] 
+perda = []  
+pingsCompletos = [] 
+pingsIncompletos = [] 
+maiorping = [] 
+menorping = [] 
+mediaping = [] 
+maiorjitter = [] 
+menorjitter = [] 
+mediajitter = [] 
+
+# FUNÇÃO PARA CALCULAR OS VALORES DE REQUEST, REPLY, PINGS COMPLETOS E PINGS INCOMPLETOS
+
+def principal(linha):
+  Replace1 = linha.replace(";"," ")
+  Replace2 = Replace1.replace("("," ")
+  Split = Replace2.split()
+  if Split[12] != "no":
+    pingsCompletos.append(Split[12])         # VETOR PINGS COMPLETOS
+    if Split[12] == "request":
+      reply.append(float(Split[1]))          # VETOR REPLY 
+    elif Split[12] == "reply":
+      request.append(float(Split[1]))        # VETOR REQUEST
+  elif Split[12] == "no":
+    pingsIncompletos.append(Split[12])       # VETOR PINGS INCOMPLETOS
+  
+
+# FUNÇÃO QUE RECEBE VALORES DOS VETORES REQUEST E REPLY PARA CALCULAR VALOR DE PING
+
+def valorping(request, reply):
+  indice = 0
+  for i in range(len(request)):
+    valorPing = float(reply[indice]) - float(request[indice])
+    ping.append(valorPing)
+    indice = indice + 1
+
+
+# FUNÇÃO QUE RECEBE O VETOR PING, PARA CALCULAR VALOR DE JITTER
+
+def valorjitter(vetorping):
+  contador = 0
+  valor1 = vetorping[0]
+  valor2 = 0
+  for i in range(len(ping)):
+    contador = contador + 1
+    if contador == 2:
+      valor2 = ping[i]
+      if valor1 > valor2:
+        maior = valor1
+        menor = valor2
+      else:
+        maior = valor2
+        menor = valor1
+      calculo = (maior - menor)
+      Jitter = round(calculo,4)
+      jitter.append(Jitter)
+      valor1 = valor2
+      contador = 1 
+      valor2 = 0    
+  jitter.insert(0,"-")
+
+
+# FUNÇÃO QUE RECEBE O VETOR PING E CALCULA O MENOR, MAIOR E O PING MÉDIO
+
+def max_min_med_ping(ping):
+  somapings = 0
+  maxping = max(ping)
+  minping = min(ping)
+  maiorping.append(maxping)
+  menorping.append(minping)
+  for i in range(len(ping)):
+    somapings = somapings + ping[i]
+  mediaping.append(somapings/(len(ping)))
+
+
+# FUNÇÃO QUE RECEBE O VETOR JITTER E CALCULA O MENOR, MAIOR E O JITTER MÉDIO
+
+def max_min_med_jitter(jitter):
+  jitter.remove("-")
+  somajitters = 0
+  maxjitter = max(jitter)
+  minjitter = min(jitter)
+  maiorjitter.append(maxjitter)
+  menorjitter.append(minjitter)
+  for i in range(len(jitter)):
+    somajitters = somajitters + jitter[i]
+  mediajitter.append(somajitters/(len(jitter)))
+
+
+# FUNÇÃO PARA CALCULAR % DE PERDAS DE PINGS
+
+def Perda(pingscompletos,pingsincompletos):
+  totalDePings = (pingscompletos/2) + pingsincompletos
+  porcentagemDePerdas = (totalDePings/100) * pingsincompletos
+  perda.append(porcentagemDePerdas)  
+
+
+# PARTE DE LEITURA DO ARQUIVO, LINHA POR LINHA
+
+arquivo = open("arq.txt","r")                     # ABRINDO ARQUIVO, NO MODO LEITURA  (Nesse exemplo o arquivo lido foi o arq.txt)
+pularlinha = arquivo.readline()                   # PULANDO A PULANDO A PRIMEIRA LINHA DO ARQUIVO
+linha = arquivo.readline()
+while linha:
+  principal(linha)                                # CHAMANDO A FUNÇÃO PRINCIPAL
+  linha = arquivo.readline()
+
+# CHAMANDO AS FUNÇOES
+
+valorping(request,reply)                          # CHAMANDO FUNÇÃO VALORPING
+valorjitter(ping)                                 # CHAMANDO FUNÇÃO VALORJITTER
+max_min_med_ping(ping)                            # CHAMANDO FUNÇÃO MAX_MIN_MED_PING
+max_min_med_jitter(jitter)                        # CHAMANDO FUNÇÃO MAX_MIN_MED_JITTER
+jitter.insert(0,"-")                              # INSERINDO NA POSIÇÃO 0, A STRING "-"        
+Perda(len(pingsCompletos),len(pingsIncompletos))  # CHAMANDO FUNÇÃO PERDA
+
+
+linhas = 1
+print("#      request       reply      ping      jitter")
+print("---------------------------------------------")
+for indice in range(len(request)):
+  print("{}      {:.3f}      {:.3f}      {:.3f}        {}".format(linhas,request[indice],reply[indice],ping[indice],jitter[indice]))
+  linhas = linhas + 1
+print("=====================================")
+print(int(len(pingsCompletos)/2)," pings completos")  
+print(len(pingsIncompletos)," pings incompletos")
+print("{}% de perda".format(perda[0]))
+print("=====================================")
+print("Ping max = {:.3f} ms".format(maiorping[0]))
+print("Ping min = {:.3f} ms".format(menorping[0]))
+print("Ping med = {:.3f} ms".format(mediaping[0]))
+print("=====================================")
+print("Jitter max = {:.3f} ms".format(maiorjitter[0]))
+print("Jitter min = {:.3f} ms".format(menorjitter[0]))
+print("Jitter med = {:.3f} ms".format(mediajitter[0]))
