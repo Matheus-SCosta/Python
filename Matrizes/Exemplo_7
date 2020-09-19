@@ -1,0 +1,16 @@
+# Nesse exemplo tem a soma da diagonal principal
+
+from random import randint
+matriz=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+for linha in range(len(matriz)):
+  for coluna in range(len(matriz)):
+    matriz[linha][coluna]=randint(0,5)
+soma=0
+for linha in range(len(matriz)):
+  for coluna in range(len(matriz)):
+    if linha==coluna:
+      soma=soma+matriz[linha][coluna]
+print("Matriz: \n")
+for i in matriz:
+  print("Matriz:", i)
+print("Soma da diagonal principal: {}".format(soma))

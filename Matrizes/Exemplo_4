@@ -1,0 +1,21 @@
+# Nesse exemplo é gerado uma matriz de números randomicos, e é mostrado qual o maior valor contido e sua posição (linha e coluna)
+
+from random import randint
+matriz=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+for l in range(len(matriz)):
+    for c in range(len(matriz)):
+        matriz[l][c]=randint(0,100)
+maior=matriz[0][0]
+linha=matriz[0][0]
+coluna=matriz[0][0]
+for l in range(len(matriz)):
+    for c in range(len(matriz)):
+        if matriz[l][c]>maior:
+            linha=l
+            coluna=c
+            maior=matriz[l][c]
+print("O maior número é {} e ele está na linha {} e na coluna {}".format(maior,linha,coluna))
+print(" ")
+print("Matriz:\n")
+for i in matriz:
+  print(i)        

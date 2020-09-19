@@ -1,0 +1,34 @@
+# Nesse exemplo é gerado 2 matrizes de valores randomicos, e gerado uma terceira matriz comparando os valores das 2 matrizes posição por posição, e o maior será incluso na terceira matriz
+
+
+from random import randint
+matriz1=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+matriz2=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+matriz3=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+
+for linha in range(len(matriz1)):
+    for coluna in range(len(matriz1)):
+        matriz1[linha][coluna]=randint(0,10)
+
+for linha in range(len(matriz1)):
+    for coluna in range(len(matriz1)):
+        matriz2[linha][coluna]=randint(0,10)        
+
+for linha in range(len(matriz1)):
+    for coluna in range(len(matriz1)):
+        if matriz1[linha][coluna]>matriz2[linha][coluna]:
+            matriz3[linha][coluna]=matriz1[linha][coluna]
+        else:
+            matriz3[linha][coluna]=matriz2[linha][coluna]
+print("Matriz 1: \n")
+for i in matriz1:
+  print(i)
+print(" ")  
+print("Matriz 2: \n")
+for i in matriz2:
+  print(i)
+print(" ")   
+print("Maiores números entre matriz 1 e matriz 2: \n")
+for i in matriz3:
+  print(i)
+

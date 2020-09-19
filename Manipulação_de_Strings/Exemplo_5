@@ -1,0 +1,91 @@
+# Exemplo de programa que leia o nome de uma pessoa e exiba-o conforme o exemplo abaixo.
+#Obs: Suponha que o nome lido não possua nenhuma preposição, artigo, etc.
+#Exemplo:
+#Entrada: FLAVIO RIBEIRO COUTINHO
+#Saída: COUTINHO, F. R. 
+
+
+nome = input("Digite seu nome completo: ")
+NOME_MAIUSCULO = nome.upper()
+Nomes_separados = NOME_MAIUSCULO.split()
+Ultimo_Nome = Nomes_separados[-1]
+
+Quantidade_Nome  = 0
+for i in Nomes_separados:
+  Quantidade_Nome = Quantidade_Nome + 1
+print(Quantidade_Nome)  
+
+if Quantidade_Nome == 2:
+  Primeiro_Nome_Junto = Nomes_separados[0]
+  Primeiro_Nome_Separado = Primeiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Primeiro_Nome = Primeiro_Nome_Separado[1]
+  print("{}, {}.".format(Ultimo_Nome ,Primeira_Letra_Primeiro_Nome))
+
+elif Quantidade_Nome == 3:
+  Primeiro_Nome_Junto = Nomes_separados[0]
+  Primeiro_Nome_Separado = Primeiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Primeiro_Nome = Primeiro_Nome_Separado[1]
+
+  Segundo_Nome_Junto = Nomes_separados[1]
+  Segundo_Nome_Separado = Segundo_Nome_Junto.replace(""," ")
+  Primeira_Letra_Segundo_Nome = Segundo_Nome_Separado[1]
+
+elif Quantidade_Nome == 4:
+  Primeiro_Nome_Junto = Nomes_separados[0]
+  Primeiro_Nome_Separado = Primeiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Primeiro_Nome = Primeiro_Nome_Separado[1]
+
+  Segundo_Nome_Junto = Nomes_separados[1]
+  Segundo_Nome_Separado = Segundo_Nome_Junto.replace(""," ")
+  Primeira_Letra_Segundo_Nome = Segundo_Nome_Separado[1]
+
+  Terceiro_Nome_Junto = Nomes_separados[2]
+  Terceiro_Nome_Separado = Terceiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Terceiro_Nome = Terceiro_Nome_Separado[1]
+
+  print("{}, {}. {}. {}.".format(Ultimo_Nome ,Primeira_Letra_Primeiro_Nome,Primeira_Letra_Segundo_Nome,Primeira_Letra_Terceiro_Nome))
+
+elif Quantidade_Nome == 5:
+  Primeiro_Nome_Junto = Nomes_separados[0]
+  Primeiro_Nome_Separado = Primeiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Primeiro_Nome = Primeiro_Nome_Separado[1]
+
+  Segundo_Nome_Junto = Nomes_separados[1]
+  Segundo_Nome_Separado = Segundo_Nome_Junto.replace(""," ")
+  Primeira_Letra_Segundo_Nome = Segundo_Nome_Separado[1]
+
+  Terceiro_Nome_Junto = Nomes_separados[2]
+  Terceiro_Nome_Separado = Terceiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Terceiro_Nome = Terceiro_Nome_Separado[1]
+
+  Quarto_Nome_Junto = Nomes_separados[3]
+  Quarto_Nome_Separado = Quarto_Nome_Junto.replace(""," ")
+  Primeira_Letra_Quarto_Nome = Quarto_Nome_Separado[1]
+
+
+  print("{}, {}. {}. {}. {}.".format(Ultimo_Nome, Primeira_Letra_Primeiro_Nome,Primeira_Letra_Segundo_Nome,Primeira_Letra_Terceiro_Nome, Primeira_Letra_Quarto_Nome))
+
+
+elif Quantidade_Nome >= 6:
+  Primeiro_Nome_Junto = Nomes_separados[0]
+  Primeiro_Nome_Separado = Primeiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Primeiro_Nome = Primeiro_Nome_Separado[1]
+
+  Segundo_Nome_Junto = Nomes_separados[1]
+  Segundo_Nome_Separado = Segundo_Nome_Junto.replace(""," ")
+  Primeira_Letra_Segundo_Nome = Segundo_Nome_Separado[1]
+
+  Terceiro_Nome_Junto = Nomes_separados[2]
+  Terceiro_Nome_Separado = Terceiro_Nome_Junto.replace(""," ")
+  Primeira_Letra_Terceiro_Nome = Terceiro_Nome_Separado[1]
+
+  Quarto_Nome_Junto = Nomes_separados[3]
+  Quarto_Nome_Separado = Quarto_Nome_Junto.replace(""," ")
+  Primeira_Letra_Quarto_Nome = Quarto_Nome_Separado[1]
+
+  Quinto_Nome_Junto = Nomes_separados[4]
+  Quinto_Nome_Separado = Quinto_Nome_Junto.replace(""," ")
+  Primeira_Letra_Quinto_Nome = Quinto_Nome_Separado[1]
+
+
+  print("{}, {}. {}. {}. {}. {}.".format(Ultimo_Nome, Primeira_Letra_Primeiro_Nome,Primeira_Letra_Segundo_Nome,Primeira_Letra_Terceiro_Nome, Primeira_Letra_Quarto_Nome, Primeira_Letra_Quinto_Nome))  

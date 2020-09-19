@@ -1,0 +1,12 @@
+#Nesse exemplo, todos os números da diagonal principal da matriz, será 0, e de outras posições será 1.
+
+matriz=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+for linha in range(len(matriz)):
+    for coluna in range(len(matriz)):
+        if linha==coluna:
+            matriz[linha][coluna]=0
+        else:
+            matriz[linha][coluna]=1
+print("Matriz: \n")
+for i in matriz:
+  print(i)

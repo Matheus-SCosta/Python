@@ -1,0 +1,49 @@
+# Exemplo de programa que, a partir da digitação do infinitivo de um verbo regular, faça a conjugação do mesmo no presente do indicativo para as pessoas do singular e plural.
+#Exemplo:
+# Entrada: CANTAR
+# Saída: Eu canto
+#        Tu cantas
+#        Ele canta
+#        Nós cantamos
+#        Vós cantais
+#        Eles cantam
+
+
+Verbo = input("Verbo: ")
+Colocar_espacos = Verbo.replace("", " ")
+Letra = Colocar_espacos.split()
+
+if Letra[-2] == "a":
+  print("Eu", Verbo.replace("ar", "o"))
+  print("Tu", Verbo.replace("ar", "as"))
+  print("Ele", Verbo.replace("ar", "a"))
+  print("Nós", Verbo.replace("ar", "amos"))
+  print("Vós", Verbo.replace("ar", "ais"))
+  print("Eles", Verbo.replace("ar", "am"))
+
+elif Letra[-2] == "e":
+  print("Eu", Verbo.replace("er", "o"))
+  print("Tu", Verbo.replace("er", "es"))
+  print("Ele", Verbo.replace("er", "e"))
+  print("Nós", Verbo.replace("er", "emos"))
+  print("Vós", Verbo.replace("er", "eis"))
+  print("Eles", Verbo.replace("er", "em"))
+
+elif Letra[-2] == "i":
+  print("Eu", Verbo.replace("ir", "io"))
+  print("Tu", Verbo.replace("ir", "is"))
+  print("Ele", Verbo.replace("ir", "i"))
+  print("Nós", Verbo.replace("ir", "imos"))
+  print("Vós", Verbo.replace("ir", "ís"))
+  print("Eles", Verbo.replace("ir", "em"))
+
+elif Letra[-2] == "o":
+  print("Eu", Verbo.replace("or", "onho"))
+  print("Tu", Verbo.replace("or", "ões"))
+  print("Ele", Verbo.replace("or", "õe"))
+  print("Nós", Verbo.replace("or", "omos"))
+  print("Vós", Verbo.replace("or", "ondes"))
+  print("Eles", Verbo.replace("or", "õem"))  
+
+else:
+  print("Palavra digitada não é verbo ou não é um verbo infinito regular")  

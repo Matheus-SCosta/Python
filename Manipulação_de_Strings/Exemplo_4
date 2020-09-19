@@ -1,0 +1,6 @@
+# Exemplo de programa que leia o email de uma pessoa e mostre, separadamente, qual o login e qual o domínio. Por exemplo, suponha que o email seja "fulano@provedor.com.br", então o login será "fulano" e o domínio será "provedor.com.br".
+
+Email = input("Digite seu e-mail: ")
+Substituicao = Email.replace("@"," ")
+Parte = Substituicao.split()
+print("Login: {} \nDominio: {}".format(Parte[0], Parte[1]))

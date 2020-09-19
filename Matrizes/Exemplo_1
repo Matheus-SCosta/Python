@@ -1,0 +1,22 @@
+#Nesse exemplo é gerado uma matriz com números randomicos entre 0 a 20, cujo é lido a quantidade de números maiores que 10
+
+from random import randint
+matriz=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+contador=0
+
+for linha in range(len(matriz)):
+    for coluna in range(len(matriz)):
+      matriz[linha][coluna]=randint(0,20)
+
+
+for linha in range(len(matriz)):
+    for coluna in range(len(matriz)):
+        if matriz[linha][coluna]>10:
+            contador=contador+1
+
+print("Matriz: \n")
+for i in matriz:
+  print(i)
+
+print(" ")  
+print("Quantidades de números maiores que 10 : ",contador) 

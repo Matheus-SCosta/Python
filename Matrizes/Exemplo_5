@@ -1,0 +1,18 @@
+# Nesse exemplo é gerado uma matriz de números randomicos, e o usuário digita um número a ser procurado na matriz gerada. Caso o número exista, e mostrado sua posição, e caso contrário, informa em todas as posições que não existe
+
+
+from random import randint
+matriz=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+n=int(input("Número: "))
+for l in range(len(matriz)):
+    for c in range(len(matriz)):
+        matriz[l][c]=randint(0,10)
+for l in range(len(matriz)):
+    for c in range(len(matriz)):
+        if n==matriz[l][c]:
+            print("[{}][{}] FOI LOCALIZADO O NÚMERO, EM LINHA {} E COLUNA {}".format(l,c,l,c))
+            
+        else:
+            print("[{}][{}] Não localizado".format(l,c))
+for i in matriz:
+  print(i)

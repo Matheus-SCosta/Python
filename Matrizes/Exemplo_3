@@ -1,0 +1,7 @@
+# Nesse exemplo, os valores das posições será a multiplicação das posições das linhas x coluna
+
+matriz=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+for l in range(len(matriz)):
+    for c in range(len(matriz)):
+        matriz[l][c]=l*c
+print(matriz)

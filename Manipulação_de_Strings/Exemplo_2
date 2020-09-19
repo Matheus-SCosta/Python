@@ -1,0 +1,22 @@
+#9. Exemplo de Programa que leia uma frase e a exiba criptografada. O método de criptografia será baseado na seguinte regra: trocar alguns caracteres por outros; a = ****, e = @, i = **, o = !, u = ..
+
+
+Frase = input("Frase: ")
+Separacao = Frase.replace("", " ")
+Letra = Separacao.split()
+
+for i in range(len(Letra)):
+  if Letra[i] == "a":
+    Letra[i] = "****" 
+  elif Letra[i] == "e":
+    Letra[i] = "@"
+  elif Letra[i] == "i":
+    Letra[i] = "**"
+  elif Letra[i] == "o":
+    Letra[i] = "!"            
+  elif Letra[i] == "u":
+    Letra[i] = ".."    
+
+
+Criptografia = "".join(Letra)
+print("Frase criptografado: ", Criptografia)
