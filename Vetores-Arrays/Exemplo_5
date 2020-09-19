@@ -1,0 +1,17 @@
+#Esse programa faz com que seja gerado um vetor com valor multiplicado (Par x 2, Impar x 3), sobre valores de um vetor original
+
+Vetor_Original = []
+Vetor_Multiplicado = []
+from random import randint
+Tamanho_Vetor = 10
+for i in range(Tamanho_Vetor):
+  elemento = randint(0,100)
+  Vetor_Original.append(elemento)
+  if elemento % 2 == 0:
+    Valor_multiplicado = elemento * 2
+    Vetor_Multiplicado.append(Valor_multiplicado)
+  else:
+    Valor_multiplicado = elemento * 3
+    Vetor_Multiplicado.append(Valor_multiplicado)
+print("Vetor Original: ",Vetor_Original)
+print("Vetor_Multiplicado: ",Vetor_Multiplicado) 

@@ -1,0 +1,9 @@
+#Escreva um programa que abra um arquivo texto e o exiba na tela com todas as suas linhas numeradas sequencialmente. 
+
+arquivo_aberto =open("arquivo1.txt", "r")
+contador = 1
+linha = arquivo_aberto.readline()
+while linha:
+  print(contador,"-",linha,"\n")
+  contador = contador + 1
+  linha = arquivo_aberto.readline()

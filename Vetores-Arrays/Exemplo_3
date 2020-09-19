@@ -1,0 +1,22 @@
+#Esse programa mostra o maior e menor elemento do vetor e suas respectivas posições.
+
+Vetor = []
+Tamanho_vetor = 10
+from random import randint
+for posição in range(Tamanho_vetor):
+  elemento = randint(0,500)
+  Vetor.append(elemento)
+Maior= Vetor[0]
+Menor= Vetor[0]
+Posição_Maior = 0
+Posição_Menor = 0
+for posição in range(Tamanho_vetor):
+  if Vetor[posição] > Maior:
+    Maior = Vetor[posição]
+    Posição_Maior = posição
+  elif Vetor[posição] < Menor:
+    Menor = Vetor[posição]
+    Posição_Menor = posição
+print("Vetor completo: ",Vetor)
+print("Maior elemento: {}, Posição: {}".format(Maior,Posição_Maior))
+print("Menor elemento: {}, Posição: {}".format(Menor,Posição_Menor))

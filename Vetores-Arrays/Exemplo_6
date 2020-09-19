@@ -1,0 +1,19 @@
+#Nesse exemplo, em um vetor é buscado um elemento determinado, e a quantidade de repetições deste elemento.
+
+from random import randint
+Vetor = []
+Tamanho_vetor = 5
+for i in range(Tamanho_vetor):
+  elemento = randint(0,10)
+  Vetor.append(elemento)
+Valor_a_procurar = int(input("Elemento a procurar: "))
+Quantidade_de_repetições = 0
+for i in range(Tamanho_vetor):
+  if Vetor[i] == Valor_a_procurar:
+      Quantidade_de_repetições = Quantidade_de_repetições + 1
+print("Vetor completo: ",Vetor)
+if Quantidade_de_repetições == 0:
+  print("Valor não esta no vetor")
+else:
+  print("Elemento {} está no vetor, e se repete {} vez(es)".format(Valor_a_procurar,Quantidade_de_repetições))
+  

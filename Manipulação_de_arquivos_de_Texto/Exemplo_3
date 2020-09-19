@@ -1,0 +1,10 @@
+#Lendo o número de linhas do arquivo. 
+
+arquivo = open("arquivo1.txt","r") 
+linhas = arquivo.readline()
+contador = 0 
+while linhas:
+  contador = contador + 1
+  linhas = arquivo.readline()
+arquivo.close()
+print(contador)  

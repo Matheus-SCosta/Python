@@ -1,0 +1,17 @@
+#Nesse exemplo, é pedido para informar valor do vetor A, cujo serão multiplicados por valor passado pelo usuário, gerando o vetor B.
+
+
+vetorA=[]
+vetorB=[]
+Valor_Multiplicador=int(input("Valor Multiplicador: "))
+tamanho_vetor=int(input("Tamanho do vetor: "))
+cont = 1
+for i in range(tamanho_vetor):
+    elemento=int(input("Posição {} vetor A: ".format(i)))
+    vetorA.append(elemento)
+    cont = cont = 1
+for i in range(tamanho_vetor):
+    resultado = vetorA[i]*Valor_Multiplicador
+    vetorB.append(resultado)
+print("Vetor A: ",vetorA)
+print("Vetor B: ",vetorB)

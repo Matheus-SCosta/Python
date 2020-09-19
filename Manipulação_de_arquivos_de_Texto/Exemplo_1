@@ -1,0 +1,12 @@
+#Escreva um programa que copie um arquivo texto (cujo nome será lido pelo teclado) para um novo arquivo chamado COPIA.TXT, porém substituindo todos os brancos contidos no arquivo pelo ponto.
+
+arquivo1 = input("Arquivo a copiar: ")
+abrir_arquivo1 = open(arquivo1, "r")
+texto = abrir_arquivo1.read()
+abrir_arquivo1.close()
+
+arquivo_novo = input("Nome do novo arquivo: ")
+criar_novo_arquivo = open(arquivo_novo, "w")
+texto_para_arquivo_novo = texto.replace(" ",".")
+criar_novo_arquivo.write(texto_para_arquivo_novo)
+criar_novo_arquivo.close()

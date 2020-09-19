@@ -1,0 +1,8 @@
+#Escreva um programa que leia do teclado o nome de um arquivo texto e uma string, abra o arquivo e inclua no final dele a string lida. 
+
+arquivo = input("Arquivo a ser aberto: ")
+string = input("String: ")
+arquivo_aberto = open(arquivo,"a")
+arquivo_aberto.write("\n")
+arquivo_aberto.write(string)
+arquivo_aberto.close()

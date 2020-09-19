@@ -1,0 +1,17 @@
+#Escreva um programa que crie um arquivo texto resultante da concatenação de dois outros arquivos.
+
+arquivo1 = input("Arquivo 1: ")
+abrir_arquivo1 = open(arquivo1,"r")
+texto1 = abrir_arquivo1.read()
+abrir_arquivo1.close()
+
+arquivo2 = input("Arquivo 2: ")
+abrir_arquivo2 = open(arquivo2,"r")
+texto2 = abrir_arquivo2.read()
+abrir_arquivo2.close()
+
+nome_arquivo_novo = input("Escolha um nome para o novo arquivo: ")
+arquivo_novo = open(nome_arquivo_novo, "w")
+arquivo_novo.write(texto1)
+arquivo_novo.write(texto2)
+arquivo_novo.close()

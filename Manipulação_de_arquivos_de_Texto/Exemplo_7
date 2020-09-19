@@ -1,0 +1,18 @@
+#. Escreva um programa que leia do teclado o nome, o sexo e a idade de várias pessoas e armazene esses dados em um arquivo texto chamado CADASTRO.TXT, sendo uma pessoa por linha e os dados separados por vírgula.
+#Obs: a leitura do nome vazio (string nula) encerra os dados de entrada.
+
+arquivo = open("arquivo4.txt","w")
+while True:
+  nome = input("Nome: ")
+  if nome == "":
+    arquivo.close()
+    break
+  else:
+    idade = input("Idade: ")
+    sexo = input("Sexo: M/F: ")
+    arquivo.write("Nome: {}".format(nome))
+    arquivo.write(" - ")
+    arquivo.write("Idade: {}".format(idade))
+    arquivo.write(" - ")
+    arquivo.write("Sexo: {}".format(sexo))
+    arquivo.write("\n")

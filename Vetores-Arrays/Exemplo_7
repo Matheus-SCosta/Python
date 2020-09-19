@@ -1,0 +1,10 @@
+#Nesse exemplo, é feito um vetor de forma ordenada.
+
+from random import randint
+Vetor = []
+Quantidade_de_elementos = 0
+for i in range(randint(0,50)):
+  elemento = randint(0,10)
+  Vetor.append(elemento)
+  Vetor.sort()  
+print(Vetor)  

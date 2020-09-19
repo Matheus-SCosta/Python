@@ -1,0 +1,18 @@
+#Nesse exemplo criei 2 vetores, e um vetor com a os valores dos vetores A e B juntos.
+
+
+from random import randint
+VetorA = []
+VetorB = []
+Vetor_Junção = []
+for i in range(randint(1,10)):
+  elemento = randint(0,800)
+  VetorA.append(elemento)
+  Vetor_Junção.append(elemento)
+for i in range(randint(0,10)):
+  elemento = randint(0,10)
+  VetorB.append(elemento)
+  Vetor_Junção.append(elemento)
+print("Vetor A: ",VetorA)  
+print("Vetor B: ",VetorB)
+print("Junção: ",Vetor_Junção)

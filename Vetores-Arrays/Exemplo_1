@@ -1,0 +1,36 @@
+#Nesse exemplo é um programa para cadastro de nomes em um vetor com o menu de opções
+
+Vetor=[]
+print("Menu de opções")
+print("Opção 1 para cadastrar nomes")
+print("Opção 2 para verificar se nome está cadastrado")
+print("Opção 3 para verificar todos os nomes cadastrados")
+print("Opção 0 para sair do programa")
+print(" ")
+Opção=int(input("Informe sua Opção: "))
+Quantidade_Nomes=0
+while Opção != 0:
+    if Opção == 1:
+        Nome=input("Cadastrar nome: ")
+        Vetor.append(Nome)
+        Quantidade_Nomes = Quantidade_Nomes + 1
+        print("Nome {} cadastrado com sucesso".format(Nome))
+        print(" ")
+    if Opção == 2:
+        Nome_a_pesquisar=input("Nome a pesquisar: ")
+        for i in range(Quantidade_Nomes):
+            if Nome_a_pesquisar==Vetor[i]:
+                print("Nome {} encontrado: ".format(Nome_a_pesquisar))
+            else:
+                print("Nome {} não encontrado".format(Nome_a_pesquisar))
+        print(" ")        
+    if Opção == 3:
+        print("Lista de nomes cadastrados: ",Vetor)
+        print(" ")
+    if Opção == 0:
+        break
+    print("Escolha novamente uma opção caso deseje continuar, caso deseje encerrar sessão, informe a opção 0")
+    print(" ")
+    Opção=int(input("Informei sua opção: "))
+
+print("Muito obrigado, tenha um(a) excelente dia/tarde/noite!")

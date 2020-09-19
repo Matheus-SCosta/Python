@@ -1,0 +1,12 @@
+#5. Escreva um programa que leia do teclado o nome de um arquivo texto e uma string, abra o arquivo e inclua no início dele a string lida. 
+
+arquivo = open("arquivo1.txt","r")
+string = "****"
+texto = arquivo.read()
+arquivo.close()
+
+arquivo = open("arquivo1.txt","w")
+arquivo.write(string)
+arquivo.write(" ")
+arquivo.write(texto)
+arquivo.close()
