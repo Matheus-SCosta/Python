@@ -1,0 +1,71 @@
+#Nesse Exemplo a partir de uma lista encadeada com nós com cargas de valores inteiros, é gerada uma lista com os nós com as cargas de valores pares e uma lista com os nós com as cargas de valores impares.
+#Não verificar com a página traduzida
+
+class No:
+  def __init__(self, carga, anterior = None, proximo = None):
+    self.carga = carga
+    self.anterior = anterior
+    self.proximo = proximo
+
+class Lista_Duplamente_encadeada:
+  def __init__(self, cabeca = None, cauda = None):
+    self.cabeca = cabeca
+    self.cauda = cauda
+
+
+  def imprimir(self):
+    if self.cabeca is None:
+      print("Lista vazia")
+      return
+    atual = self.cabeca
+    while atual:
+      print(atual.carga)
+      atual = atual.proximo
+
+
+  def inserir_inicio1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cabeca is None:                                                         #Lista vazia
+      self.cabeca = self.cauda = valor
+      return
+    valor.proximo = self.cabeca                                                     #O proximo do valor será a carga da cabeca
+    self.cabeca.anterior = valor                                                    #O anterior da cabeca será a carga do novo valor
+    self.cabeca = valor                                                             #Declarando que a cabeça será o novo valor
+
+  def inserir_final1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cauda is None:                                                          #lista vazia
+      self.cauda = self.cabeca = valor
+      return
+    valor.anterior = self.cauda                                                     #O anterior do novo valor será a carga da cauda
+    self.cauda.proximo = valor                                                      #O proximo da cauda será a carga do novo valor
+    self.cauda = valor                                                              #Declarando que a cauda será o novo valor
+
+  def par_impar(self, lista):                                                       #Recebe a propria lista como entrada, mas também podendo receber qualquer outra lista criada
+    atual = lista.cabeca
+    while atual:
+      if atual.carga % 2 == 0:
+        listapar.inserir_final1(atual.carga)                                        #Se for par inclui na lista par
+      else:
+        listaimpar.inserir_final1(atual.carga)                                      #Se for impar inclui na lista impar
+      atual = atual.proximo
+
+
+
+listapar = Lista_Duplamente_encadeada()                                             #também poderia ter criado dentro do método, mas preferi criar como instancia de lista_Duplamente_encadeada pelos mesmos motivos da questão 1.
+listaimpar = Lista_Duplamente_encadeada()                                           #também poderia ter criado dentro do método, mas preferi criar como instancia de lista_Duplamente_encadeada pelos mesmos motivos da questão 1.
+
+lista1 = Lista_Duplamente_encadeada()
+lista1.inserir_final1(10)
+lista1.inserir_inicio1(7)
+lista1.inserir_final1(2)
+lista1.inserir_inicio1(5)
+lista1.inserir_inicio1(1)
+lista1.par_impar(lista1)
+print("Lista Par")
+listapar.imprimir()
+print("\n Lista Impar")
+listaimpar.imprimir()
+
+
+

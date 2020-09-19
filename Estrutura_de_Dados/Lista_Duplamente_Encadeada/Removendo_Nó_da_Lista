@@ -1,0 +1,85 @@
+#Exemplo de remoção de nó ou nós de uma lisa duplamente encadeada
+#Não verificar a página traduzida
+
+class No:
+  def __init__(self, carga, anterior = None, proximo = None):
+    self.carga = carga
+    self.anterior = anterior
+    self.proximo = proximo
+
+class Lista_Duplamente_encadeada:
+  def __init__(self, cabeca = None, cauda = None):
+    self.cabeca = cabeca
+    self.cauda = cauda
+
+
+  def imprimir(self):
+    if self.cabeca is None:
+      print("Lista vazia")
+      return
+    atual = self.cabeca
+    while atual:
+      print(atual.carga)
+      atual = atual.proximo
+
+
+  def inserir_inicio1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cabeca is None:                                             #Lista vazia
+      self.cabeca = self.cauda = valor
+      return
+    valor.proximo = self.cabeca                                         #O proximo do valor será a carga da cabeca
+    self.cabeca.anterior = valor                                        #O anterior da cabeca será a carga do novo valor
+    self.cabeca = valor                                                 #Declarando que a cabeça será o novo valor
+
+  def inserir_final1(self, valor):
+    valor: 'No' = No(valor)
+    if self.cauda is None:                                              #Lista vazia
+      self.cauda = self.cabeca = valor
+      return
+    valor.anterior = self.cauda                                         #O anterior do novo valor será a carga da cauda
+    self.cauda.proximo = valor                                          #O proximo da cauda será a carga do novo valor
+    self.cauda = valor                                                  #Declarando que a cauda será o novo valor
+
+  def remover_ocorrencia(self, ocorrencia):
+    atual = self.cabeca
+    if self.cabeca == self.cauda:                                       #Caso a lista só tenha 1 nó
+      self.cabeca = self.cauda = None
+      return
+    while atual:
+      if atual.carga == ocorrencia:
+        if atual == self.cabeca:                                        #Caso seja o primeiro da lista (também util para remover a ocorrencia caso esteja em sequencia no começo, como no exemplo dado que no começo da lista tem 1,1.)
+          self.cabeca = atual.proximo
+          self.cabeca.anterior = None
+        else:
+          if atual == self.cauda:                                       #Para remover no final da lista (também removendo caso tenha sequencia)
+            self.cauda = atual.anterior
+            self.cauda.proximo = None
+          else:                                                         #Para remover no meio da lista (também removendo caso tenha sequencia)
+            atual.proximo.anterior = atual.anterior
+            atual.anterior.proximo = atual.proximo
+      atual = atual.proximo
+
+
+lista2 = Lista_Duplamente_encadeada()
+lista2.inserir_inicio1(5)
+lista2.inserir_inicio1(1)
+lista2.inserir_inicio1(1)
+lista2.inserir_final1("FINAL")
+lista2.inserir_final1(10)
+lista2.inserir_final1(10)
+lista2.inserir_final1(10)
+lista2.inserir_final1("FINAL")
+lista2.inserir_final1("FINAL")
+lista2.inserir_final1("FINAL")
+lista2.inserir_final1("FINAL")
+lista2.remover_ocorrencia("FINAL")
+lista2.remover_ocorrencia(10)
+lista2.imprimir()
+
+
+#Dessa forma remove em qualquer posição na lista, caso seja no começo, meio e final, sendo em uma unica ocorrencia ou em sequencia como no exemplo e também caso a lista tenha apenas 1 elemento.
+
+
+
+
