@@ -1,0 +1,349 @@
+#Nessa lista, foi incluso vários métodos, como printar, incluir nó no inicio, incluir nó no fim, localizar elemento, Atualizar elemento, Remover elemento, incluir elemento em posição específica, remover ocorrências duplicadas, mostrar o caminho para determinado elemento, altura da lista, mostrar o menor valor da lista, maior valor da lista, profundidade da lista, Tamanho da lista, Valor que está no centro da lista, inserir valor em ordem, Excluir primeiro elemento, Excluir segundo elemento, soma dos valores da lista, Criação de lista par e impar, checar se a lista está em ordem crescente, checar se a lista está em sequencia de 1,Verifica se 2 listas são iguais, Remover ocorrências, procura elemento por posição, e mostra os elementos com valores maiores a um elemento de entrada.  
+
+class Node:
+  def __init__(self, value, thenext = None):
+    self.value = value
+    self.thenext = thenext
+
+class Linked_list:
+  def __init__(self, head = None):
+    self.head = head
+
+  def printout(self):
+    current = self.head
+    while current is not None:
+      print(current.value)
+      current = current.thenext
+    print ("--------")
+
+  def include_at_the_beginning(self, number):
+    current = self.head
+    if self.head == None:
+      self.head = number
+    number.thenext = current
+    self.head = number  
+
+  def include_at_the_end(self, number):
+    if self.head is None:
+      self.head = number
+    current = self.head
+    while current.thenext is not None:
+        current = current.thenext
+    current.thenext = number
+
+  def find_element(self, number):
+    current = self.head
+    while current != None:
+      if current.value == number:
+        print("Number",number, "located")
+        return
+      current = current.thenext
+    print("Number",number,"not found")        
+
+  def update_element(self, current_value, new_value):
+    current = self.head
+    while current is not None:
+      if current.value == current_value:
+        current.value = new_value
+        return
+      current = current.proximo
+    print("Element nonexistent")  
+
+  def to_remove(self, number):
+    previous = None
+    current = self.head
+    if current.value == number and current.thenext is None:
+      self.head = None
+    while current is not None:
+      if current.value == number:
+        if previous is None:
+          self.head = current.thenext
+          return
+        elif previous is not None:
+          previous.thenext = current.thenext
+          return
+      previous = current
+      current = current.thenext  
+    print("------------ ")
+    print("{} non-existent data for removal".format(number))
+
+  def include_element(self, number, position):
+    current = self.head
+    previous = None
+    counter = 0
+    while current is not None:
+      if counter == position:
+        previous.thenext = number
+        number.thenext = current
+        return
+      counter = counter + 1
+      previous = current
+      current = current.thenext    
+    print("--------")
+    print("Position {} not found".format(position))
+
+  def remove_duplicates(self):
+    current = self.head
+    previous = None
+    while current.thenext is not None:#Condição de repetição
+      if current.value == current.thenext.value: #Se o valor atual for igual ao atual.proximo
+        if previous is None:                     #Se o anterior for None
+          self.head = current.thenext            #A cabeça passará a ser o próximo
+        else:                                    #Se o anterior não for None  
+          previous.thenext = current.thenext     #O proximo do anterior será o proximo do atual
+      previous = current                         #Saindo das condições, o anterior agora será o atual
+      current = current.thenext                  #E o atual será o proximo
+
+  def show_way_to_element(self, number):
+    current = self.head
+    print("Path to element {} in list: \n".format(number))
+    while current.value != number:
+      print(current.value)
+      current = current.thenext
+  
+  def height(self, number):
+    current = self.head
+    counter = 0
+    while current is not None:
+      if current.value == number:
+        while current is not None:
+          counter = counter + 1
+          current = current.thenext
+        print("from number {} to the end of the list, there are {} steps".format(number, counter - 1))
+        return  
+      current = current.thenext    
+
+  def minimum_list_value(self):
+    current = self.head
+    lower_value = self.head
+    while current != None:
+      if current.thenext != None:
+        if current.value < lower_value.value:
+          lower_value.value = current.value
+      elif current.thenext is None:
+        if current.value < lower_value.value:
+          lower_value.value = current.value
+      current = current.thenext    
+    print("Minimum list value: ",lower_value.value)
+
+  def maximum_list_value(self):
+    current = self.head
+    maximum_value = self.head
+    while current:
+      if current.value > maximum_value.value:
+        maximum_value.value = current.value
+      current = current.thenext
+    print("Maximum lista value: ",maximum_value.value) 
+  
+  def depth(self, number):
+    current = self.head
+    counter = 0
+    while current is not None:
+      if current.value is number:
+        if counter>0:
+          print("The number of steps of the head or number {} is: {}".format(number,counter))
+        else:
+          print("{} is the head".format(number))    
+        return
+      counter = counter + 1
+      current = current.thenext
+    print("The number of steps of the head or number {} is: {}".format(number,counter))    
+
+  def list_size(self):
+    size = 0
+    current = self.head
+    while current:
+      size = size + 1
+      current = current.thenext
+    print("List size: ",size)  
+
+  def number_that_is_in_the_middle_of_the_list(self):
+    size = 0
+    current = self.head
+    while current:
+      size = size + 1
+      current = current.thenext
+    halff = (size / 2)
+    half = round(halff, 0) -1 
+    counter = 0
+    current = self.head
+    print("valor da cabeça no la de cima: ",current.value)
+    while current:
+      if counter == half:
+        print("halfway through the list: ",current.value)
+        return
+      counter = counter + 1
+      current = current.thenext  
+
+  def insert_in_order(self, number):
+    current = self.head
+    previous = None
+    while current:
+      if current.value > number.value:
+        if previous is None:
+          self.head = number
+          number.thenext = current
+          return
+        elif previous is not None and current.thenext != None:
+          previous.thenext = number
+          number.thenext = current
+          return
+      previous = current
+      current = current.thenext  
+    previous.thenext = number
+
+  def delete_first_element(self):
+    current = self.head
+    counter = 0
+    while current:
+      if counter == 0:
+        self.head = current.thenext
+        return
+
+  def delete_second_element(self):
+    current = self.head
+    previous = None
+    counter = 0
+    while current:
+      if counter == 1:
+        if current.thenext is not None:
+          previous.thenext = current.thenext
+        else:
+          previous.thenext = None
+        return      
+      counter = counter + 1
+      previous = current
+      current = current.thenext
+
+  def include_element_in_order(self, number):
+    current = self.head
+    previous = None
+    while current:
+      if current.value > number.value:
+        if previous is None:
+          number.thenext = current
+          self.head = number
+          return
+        else:
+          if current.thenext is not None:
+            previous.thenext = number
+            number.thenext = current
+            return
+          elif current.thenext is None:
+            previous.thenext = number
+            number.thenext = current
+            return
+      elif current.value < number.value and current.thenext is None:
+        current.thenext = number
+      previous = current
+      current = current.thenext  
+    
+  def sum_of_list_values(self):
+    current = self.head
+    Sum = 0
+    if self.head is None:
+      print("Lista Vazia")
+      print("Valores somados: 0")
+      return
+    while current:
+      Sum = Sum + current.value
+      current = current.thenext
+    print("Valores somados:",Sum)
+
+  def even_and_odd_list(self):
+    current = self.head
+    auxiliary_pair = Linked_list()
+    auxiliary_odd = Linked_list()
+    while current:
+      if current.value % 2 == 0:
+        auxiliary_pair.include_at_the_beginning(Node(current.value))
+        current = current.thenext
+      else:
+        auxiliary_odd.include_at_the_beginning(Node(current.value))
+        current = current.thenext
+    current = auxiliary_pair.head
+    print("Even list")
+    while current:
+      print(current.value)
+      current = current.thenext
+    current = auxiliary_odd.head
+    print("Odd list:")
+    while current:
+      print(current.value)
+      current = current.thenext
+
+  def check_that_it_is_in_order(self):
+    current = self.head
+    while current.thenext:
+      if current.value > current.thenext.value:
+        print("list is not in ascending order")
+        return
+      current = current.thenext
+    print("ascending order")    
+
+  def check_if_it_is_in_sequence(self):
+    current = self.head
+    counter = current.value
+    while current.thenext:
+      value = counter + 1
+      if current.thenext.value != value:
+        print("List is not in sequence")
+        return
+      current = current.thenext
+      counter = counter + 1  
+    print("List in sequence")
+      
+  def check_if_lists_are_the_same(self, listone, listtwo):
+    current_one = listone.head
+    current_two = listtwo.head
+    while current_one:
+      if current_one.value != current_two.value:
+        print("Lists are not the same")
+        return
+      current_one = current_one.thenext
+      current_two = current_two.thenext
+    print("Lists are the same")    
+
+  def remove_occurrences(self, element):
+    current = self.head
+    previous = None
+    while current:
+      if current.value == element:
+        if previous == None:
+          self.head = current.thenext
+        else:
+          previous.thenext = current.thenext
+      
+      previous = current
+      current = current.thenext        
+
+
+  def find_element_by_position(self, position):
+    current = self.head
+    counter = 0
+    while current:
+      if position == counter:
+        print("Element in position {} is {}".format(position,current.value))
+        return
+      counter = counter + 1
+      current = current.thenext
+    print("Report position {} does not exist".format(position))   
+    
+  def numbers_greater_than(self, elementvalue):
+    current = self.head
+    counter = 0
+    while current:
+      if current.value > elementvalue.value:
+        counter = counter + 1
+      current = current.thenext
+    print("the list has {} numbers greater than {}".format(counter, elementvalue.value))   
+      
+list1 = Linked_list(Node(3))
+list1.include_at_the_beginning(Node(2))
+list1.include_at_the_end(Node(4)) 
+list1.include_at_the_beginning(Node(1))
+print("List one:")
+list1.printout()
+
+
+

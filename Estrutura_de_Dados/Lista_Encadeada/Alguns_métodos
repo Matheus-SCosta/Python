@@ -1,0 +1,101 @@
+# Representação encadeada dinâmica com ponteiros (utilizando o objeto Nó) Implemente os seguintes métodos para ambas as listas:
+
+#imprimir() - Exibe todos os elementos da lista
+#adicionar(item, posicao) - Adiciona um elemento na posição correspondente
+#remover(item) - Remove o elemento correspondente
+#procurar(item) - Retorna True se o item existir na lista e False caso não exista
+#atualizar(item, valor) - Atualiza o valor do elemento correspondente caso exista
+
+
+
+class No:
+    def __init__(self, carga, proximo=None):
+        self.carga = carga
+        self.proximo = proximo
+
+
+class Lista_Encadeada:
+    def __init__(self, cabeca=None, cauda=None):
+        self.cabeca = cabeca
+        self.cauda = cauda
+
+    def imprimir(self):
+        if self.cabeca is None:
+            print("Lista vazia")
+            return
+        no_atual = self.cabeca
+        while no_atual:
+            print(no_atual.carga)
+            no_atual = no_atual.proximo
+
+    def adicionar(self, item, posicao):
+        if self.cabeca is None:  # se a lista for vazia
+            self.cabeca = self.cauda = item  # a cabeça e a cauda será o novo item
+            return
+        no_atual = self.cabeca
+        no_anterior = None
+        contador_de_posicao = 0
+        while no_atual:
+            if posicao == 0:
+                item.proximo = no_atual
+                self.cabeca = item
+                return
+            if contador_de_posicao == posicao:
+                no_anterior.proximo = item
+                item.proximo = no_atual
+            no_anterior = no_atual
+            no_atual = no_atual.proximo
+            contador_de_posicao = contador_de_posicao + 1
+
+    def remover(self, elemento):
+        no_atual = self.cabeca
+        no_anterior = None
+        if self.cabeca.carga == elemento:  # remover o primeiro da lista
+            self.cabeca = no_atual.proximo
+            return
+        no_anterior = no_atual
+        no_atual = no_atual.proximo
+        while no_atual:  # para remover no meio da lista
+            if no_atual.carga == elemento:
+                no_anterior.proximo = no_atual.proximo
+                if no_atual.proximo is None:  # caso seja o ultimo a ser removido
+                    self.cauda = no_anterior  # o anterior passa a ser a cauda
+            no_anterior = no_atual
+            no_atual = no_atual.proximo
+
+    def atualizar(self, no, novo_no):
+        no_atual = self.cabeca
+        while no_atual:
+            if no_atual.carga == no:  # se no nó atual estiver o nó que queira atualizar
+                no_atual.carga = novo_no  # o nó atual vai receber a nova carga
+                return
+            no_atual = no_atual.proximo
+        print("Nó não localizado na lista")
+
+    def procurar(self, item):
+        if self.cabeca.carga == item or self.cauda.carga == item:  # se o item for o primeiro ou ultimo da lista não precisa entrar no laço de repetição, já retorna True e sai
+            return True
+        no_atual = self.cabeca
+        while no_atual:
+            if no_atual.carga == item:
+                return True  # caso seja localizado
+            no_atual = no_atual.proximo
+        return False  # caso o item procurado não seja localizado na lista
+
+
+lista1 = Lista_Encadeada()
+lista1.adicionar(No(4), 0)
+lista1.adicionar(No(5), 0)
+lista1.adicionar(No(8), 0)
+lista1.adicionar(No(7), 1)
+lista1.adicionar(No(6), 2)
+lista1.atualizar(6, 70)
+lista1.remover(4)
+print(lista1.procurar(7))
+lista1.imprimir()
+print("Cabeca: ", lista1.cabeca.carga)
+print("Cauda: ", lista1.cauda.carga)
+
+
+
+
