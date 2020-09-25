@@ -1,0 +1,72 @@
+#Com o conhecimento obtido através da explicação sobre encadeamento de nós em uma lista linear,exercite a execução das instruções abaixo, atualizando a estrutura de memória após a realização de cada operação:
+
+#sendo a lista original: 2 => 3 => D => F => L => X.
+
+#a) Insere um no com informação “123” após o F.
+#b) Insere um no com informação Z = após o X;
+#c) Retire o no com informação D.
+#d) Insere um no com informação B antes do primeiro da lista
+
+
+
+class Node:
+  def __init__(self, value, thenext = None):
+    self.value = value
+    self.thenext = thenext
+
+
+class LinkedList:
+  def __init__(self, head = None):
+    self.head = head 
+
+  def printout(self):
+    current = self.head
+    while current:
+      print(current.value)
+      current = current.thenext
+
+  def include_end(self, element):
+    if self.head is None:
+      self.head = element
+    current = self.head  
+    while current.thenext is not None:
+      current = current.thenext
+    current.thenext = element    
+
+  def include_after_element(self, element_of_reference, element):
+    current = self.head
+    while current:
+      if current.value is element_of_reference.value:
+        element.thenext = current.thenext
+        current.thenext = element
+        return
+      current = current.thenext  
+
+  def remove(self, element_of_reference):
+    previous = None
+    current = self.head
+    while current:
+      if current.value == element_of_reference.value:
+        previous.thenext = current.thenext
+      previous = current
+      current = current.thenext  
+
+  def include_before(self, element_of_reference, element):
+    current = self.head
+    if current.value == element_of_reference.value:
+      self.head = element
+      element.thenext = current  
+
+
+
+list1 = LinkedList(Node(2))    
+list1.include_end(Node(3))
+list1.include_end(Node("D"))
+list1.include_end(Node("F"))
+list1.include_end(Node("L"))
+list1.include_end(Node("X"))
+list1.include_after_element(Node("F"), Node("123"))
+list1.include_after_element(Node("X"), Node("Z"))
+list1.include_before(Node(2), Node("B"))
+list1.remove(Node("D"))
+list1.printout()

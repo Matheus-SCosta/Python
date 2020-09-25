@@ -1,0 +1,54 @@
+#Nesse exemplo, para inverter os elementos da lista, foi gerado uma lista auxiliar, cujo valores da lista original, são repassados.
+
+
+class Node:
+  def __init__(self, value, thenext = None):
+    self.value = value
+    self.thenext = thenext
+
+class List:
+  def __init__(self, head = None):
+    self.head = head
+
+  def printout(self):
+    current = self.head
+    while current is not None:
+      print(current.value)
+      current = current.thenext
+
+  def include_at_the_beginning(self, number):
+    current = self.head
+    if self.head == None:
+      self.head = number
+    number.thenext = current
+    self.head = number  
+
+  def include_at_the_end(self, number):
+    if self.head is None:
+      self.head = number
+    current = self.head
+    while current.thenext is not None:
+        current = current.thenext
+    current.thenext = number
+ 
+  def flip_list(self):
+    current = self.head
+    auxiliary_list = List()
+    while current is not None:
+      auxiliary_list.include_at_the_beginning(Node(current.value))
+      current = current.thenext
+    current = auxiliary_list.head
+    while current:
+      print(current.value)
+      current = current.thenext
+
+
+list1 = List(Node(2))
+list1.include_at_the_beginning(Node(1))
+list1.include_at_the_end(Node(3))
+print("Lista real:")
+list1.printout()
+print(" -------- ")
+print("Lista invertida: ")
+list1.flip_list()
+
