@@ -1,0 +1,79 @@
+# Invertendo Fila
+
+class No:
+    def __init__(self, carga, proximo=None):
+        self.carga = carga
+        self.proximo = proximo
+
+
+class Lista_Encadeada:
+    def __init__(self, cabeca=None, cauda=None):
+        self.cabeca = cabeca
+        self.cauda = cauda
+
+    def imprimir(self):
+        if self.cabeca is None:
+            print("Lista vazia")
+            return
+        no_atual = self.cabeca
+        while no_atual:
+            print(no_atual.carga)
+            no_atual = no_atual.proximo
+
+    def adicionar_no_final(self, valor):
+        valor: 'No' = No(valor)
+        if self.cabeca is None:
+            self.cabeca = valor
+            return
+        atual = self.cabeca
+        while atual.proximo is not None:
+            atual = atual.proximo
+        atual.proximo = valor
+
+    def remover_do_comeco(self):
+        atual = self.cabeca
+        self.cabeca = atual.proximo
+
+
+    def adicionar_no_comeco(self, no):
+        no: 'No' = No(no)
+        no.proximo = self.cabeca
+        self.cabeca = no
+
+
+    def inverter(self):
+        listaaux = Lista_Encadeada()                           # Lista auxiliar, cujo será importante para armazenar os nós invertidos
+        atual = self.cabeca
+        while atual:                                           # Varrendo a fila
+            listaaux.adicionar_no_comeco(atual.carga)          # Adiciona no começo da lista auxiliar, dessa forma deixando a lista auxiliar o inverso da fila
+            atual = atual.proximo
+            self.remover_do_comeco()                           # A cada nó incluso na lista auxiliar, é removido da fila
+        atual = listaaux.cabeca
+        while atual:                                           # Varrendo a lista auxiliar
+            self.adicionar_no_final(atual.carga)               # Adicionando o nó que está na lista auxiliar na fila, invertendo as posições
+            atual = atual.proximo
+
+class Fila(Lista_Encadeada):
+    def alimentar(self, elemento):
+        self.adicionar_no_final(elemento)
+
+    def remover_do_comeco_fila(self):
+        self.remover_do_comeco()
+
+    def inverterFila(self):
+        self.inverter()                                        # Chama o método inverter da classe Lista_encadeada
+
+
+def main():
+    S = Fila()
+    S.alimentar(5)
+    S.alimentar(700)
+    S.alimentar(82)
+    S.alimentar(670)
+    print("Fila antes de inverter:\n")
+    S.imprimir()
+    S.inverterFila()
+    print("\nFila depois de inverter:\n")
+    S.imprimir()
+
+main()

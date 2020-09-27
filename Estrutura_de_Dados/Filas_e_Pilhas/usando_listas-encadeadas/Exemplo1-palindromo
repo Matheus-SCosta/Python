@@ -1,0 +1,95 @@
+# Nesse exemplo o programa verificar se a fila é palindromo, ou seja, se pode ser lida da mesma forma de frente para trás e de trás para frente
+
+
+class No:
+    def __init__(self, carga, proximo=None):
+        self.carga = carga
+        self.proximo = proximo
+
+
+class Lista_Encadeada:
+    def __init__(self, cabeca=None, cauda=None):
+        self.cabeca = cabeca
+        self.cauda = cauda
+
+    def tamanho(self):
+        contador  = 0
+        atual = self.cabeca
+        while atual:
+            contador = contador + 1
+            atual = atual.proximo
+        return contador
+
+    def imprimir(self):
+        if self.cabeca is None:
+            print("Lista vazia")
+            return
+        no_atual = self.cabeca
+        while no_atual:
+            print(no_atual.carga)
+            no_atual = no_atual.proximo
+
+    def adicionar_no_final(self, valor):
+        valor: 'No' = No(valor)
+        if self.cabeca is None:
+            self.cabeca = valor
+            return
+        atual = self.cabeca
+        while atual.proximo is not None:
+            atual = atual.proximo
+        atual.proximo = valor
+
+
+    def adicionar_no_comeco(self, no):                         #  Usada pelo método palindromo para criação da lista auxiliar
+        no: 'No' = No(no)
+        no.proximo = self.cabeca
+        self.cabeca = no
+
+
+    def palindromo(self):
+        listaaux = Lista_Encadeada()                           # Lista auxiliar, cujo será importante para armazenar os nós invertidos
+        atual = self.cabeca
+        while atual:                                           # Varrendo a fila
+            listaaux.adicionar_no_comeco(atual.carga)          # Adiciona no começo da lista auxiliar, dessa forma deixando a lista auxiliar o inverso da fila
+            atual = atual.proximo
+        atual = self.cabeca
+        atualaux = listaaux.cabeca                             # Variável auxiliar para representar cada nó da lista auxiliar
+        while atual:
+            if atual.carga is not atualaux.carga:              # Varrendo ambas as filas comparando seus nós
+                print("Fila não palimdromo")
+                return
+            atual = atual.proximo
+            atualaux = atualaux.proximo
+        print("Fila palimdromo")
+
+
+class Fila(Lista_Encadeada):
+
+    def adicionar_no_final_fila(self, elemento):               # Método para adicionar elemento no final da fila
+        self.adicionar_no_final(elemento)
+
+    def palindromoFila(self):                                  # Para caso a lista seja vazia
+        if self.tamanho() == 0:
+            return "Lista vazia"
+            return
+        self.palindromo()
+
+
+
+fila1 = Fila()
+fila1.adicionar_no_final_fila(670)
+fila1.adicionar_no_final_fila(700)
+fila1.adicionar_no_final_fila(701210)
+fila1.adicionar_no_final_fila(670)
+print("Fila 1:")
+fila1.palindromoFila()
+
+fila2 = Fila()
+fila2.adicionar_no_final_fila("yz")
+fila2.adicionar_no_final_fila("89")
+fila2.adicionar_no_final_fila("0000000")
+fila2.adicionar_no_final_fila("89")
+fila2.adicionar_no_final_fila("yz")
+print("\nFila 2:")
+fila2.palindromoFila()
+
