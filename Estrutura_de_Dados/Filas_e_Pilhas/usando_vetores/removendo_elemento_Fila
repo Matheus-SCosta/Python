@@ -1,0 +1,56 @@
+# Nesse exemplo o usuário escolhe a quantidade de elementos que deseja remover da fila
+
+
+class Fila:
+  def __init__(self):
+    self.__dados = []
+
+  def is_empty(self):
+    if len(self.__dados) == 0:
+      return "lista vazia"
+
+  def __str__(self):    #para não precisar fazer lista1.mostrar() para mostrar
+    return str(self.__dados)
+
+  def push(self, elemento):
+    self.__dados.append(elemento)
+
+  def remover(self):
+    if (not self.is_empty()):   #se a lista não for vazia
+      del(self.__dados[0])   #mesmo que self.__dados.pop(0)
+      return
+    print("Fila já vazia")
+
+  def tamanho(self):
+    return len(self.__dados)
+
+  def remover_por_quantidade_de_elementos(self, quantidade):
+    if quantidade <= self.tamanho():   						# Caso a quantidade de elementos a remover passada como argumentos seja maior que a quantidade de elementos na fila
+      contador = 0
+      while contador < quantidade:
+        self.__dados.pop(0)
+        contador = contador + 1
+      return  
+    return "Operação não válida, pois a quantidade de elementos passada para remoção é maior de que a quantidade de elementos que a fila possui"
+
+def main():
+  fila1 = Fila()
+  fila1.push(1)
+  fila1.push(2)
+  fila1.push(3)
+  print("Fila antes da remoção", fila1)
+  fila1.remover_por_quantidade_de_elementos(1)
+  print("Fila após a remoção: ",fila1)
+  print("A fila possui {} elementos".format(fila1.tamanho()))
+
+main()  
+
+
+
+
+
+
+    
+
+
+
