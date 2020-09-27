@@ -1,0 +1,47 @@
+# Invertendo a pilha
+
+
+
+class Pilha:
+  def __init__(self):
+    self.__dados = []
+
+  def alimentar(self, elemento):
+    self.__dados.append(elemento)
+
+  def is_empty(self):
+    return len(self.__dados) == 0                           # Retorna True se a lista for vazia  
+
+  def remover(self):
+    if (not self.is_empty()):                               # Se a lista não for vazia
+      del(self.__dados[-1])
+
+  def inverter(self):
+    pilhaAdicional = Pilha()                                # Cria uma lista adicional
+    tamanho_pilha = len(self.__dados)
+    if (not self.is_empty()):                               # Se a lista não for vazia
+      for i in range(tamanho_pilha-1,-1,-1):                # Vai varrer a lista ao contrário
+        pilhaAdicional.__dados.append(self.__dados[i])      # inserir os valores da pilha S na pilha adicional
+        self.remover()                                      # E a cada valor inserido na lista adicional, ele é removido na pilha S
+      for i in range(0,tamanho_pilha,1):                    # Vai varrer a lista adicional
+        self.__dados.append(pilhaAdicional.__dados[i])      # E insere os valores na Pilha S
+      return self.__dados                                   # Retorna a Pilha com os valores invertidos
+
+  def __str__(self):
+    return str(self.__dados)
+
+def main():
+  S = Pilha()
+  S.alimentar(4)
+  S.alimentar(40)
+  S.alimentar("Meio")
+  S.alimentar(45)
+  S.remover()
+  print("Antes de inverter")
+  print(S)
+  print("Depois de inverter")
+  S.inverter()
+  print(S)
+main()
+
+

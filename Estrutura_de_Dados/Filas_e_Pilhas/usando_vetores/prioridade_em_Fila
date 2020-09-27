@@ -1,0 +1,146 @@
+# Nesse exemplo o usuário determina a realização de um determinado eventos, e o programa ordena os eventos dados pelo usuário de acordo com sua prioridade, executa os eventos usando a fila. Os eventos são inclusos no final da fila, e após a sua execução são removidos no começo da fila.
+
+# Prioridade de eventos:
+#	  COLISAO
+#     	  ATUALIZAÇÃO DE TELA
+#     	  PARTICULAS
+#         LÓGICA DE JOGO
+#         INTELIGÊNCIA ARTIFICIAL
+#         SIMULAÇÃO FÍSICA
+#         TECLADO 
+#         MOUSE
+#         INTERNET
+
+
+
+
+class Filas:
+    def __init__(self):
+        self.__eventos_nomes = []                          # Fila que ficará com os nomes dos eventos ordenados em prioridade
+        self.__eventos_ids = []                            # Fila que servirá para guardar as ids dos eventos, ordena-los e sendo útil também para quando for adicionar o nome do eventos para a fila eventos_nome s
+
+    def __str__(self):                                     # Método para mostrar o conteudo da fila
+        return str(self.__eventos_nomes)
+
+    def eventos(self, evento):                             # Método que oferece ao usuário opção de chamar o evento pelo nome ou ID. O evento entra no método e recebe um id, e chama o método ordenação
+        if evento == "COLISÃO" or evento == 1:
+            self.ordenacao(1)
+        elif evento == "ATUALIZAÇÃO DE TELA" or evento == 2:
+            self.ordenacao(2)
+        elif evento == "PARTICULAS" or evento == 3:
+            self.ordenacao(3)
+        elif evento == "LÓGICA DE JOGO" or evento == 4:
+            self.ordenacao(4)
+        elif evento == "INTELIGÊNCIA ARTIFICIAL" or evento == 5:
+            self.ordenacao(5)
+        elif evento == "SIMULAÇÃO FISICA" or evento == 6:
+            self.ordenacao(6)
+        elif evento == "TECLADO" or evento == 7:
+            self.ordenacao(7)
+        elif evento == "MOUSE" or evento == 8:
+            self.ordenacao(8)
+        elif evento == "INTERNET" or evento == 9:
+            self.ordenacao(9)
+        else:
+            return "Opção inválida"                         # Caso usuário informe um eventos não existente
+
+    def ordenacao(self, evento_id):                         # Método que recebe os IDs, adiciona no vetor eventos_ids e ordena o vetor eventos_ids
+        self.__eventos_ids.append(evento_id)                # A cada evento de entrada é adicionado na fila evento_ids
+        self.__eventos_ids.sort()                           # E a cada elemento que entra na fila eventos_ids, a fila é reordenada
+
+    def prioridade(self):
+        for i in range(len(self.__eventos_ids)):            # Método para varrer a fila eventos_ids e dependendo de qual seja o valor dentro da fila eventos_ids, será chamado o método correspondente
+            if self.__eventos_ids[i] == 1:
+                self.colisao_1()
+            elif self.__eventos_ids[i] == 2:
+                self.atualizacao_de_tela_2()
+            elif self.__eventos_ids[i] == 3:
+                self.particulas_3()
+            elif self.__eventos_ids[i] == 4:
+                self.logica_de_jogo_4()
+            elif self.__eventos_ids[i] == 5:
+                self.inteligencia_artificial_5()
+            elif self.__eventos_ids[i] == 6:
+                self.simulacao_fisica_6()
+            elif self.__eventos_ids[i] == 7:
+                self.teclado_7()
+            elif self.__eventos_ids[i] == 8:
+                self.mouse_8()
+            elif self.__eventos_ids[i] == 9:
+                self.internet_9()
+
+    def colisao_1(self):                                    # Caso o método seja chamado, ele chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("COLISÃO")
+
+    def atualizacao_de_tela_2(self):                        # Caso o método seja chamado, ele chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("ATUALIZAÇÃO DE TELA")
+
+    def particulas_3(self):                                 # Caso o método seja chamado, ela chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("PARTICULAS")
+
+    def logica_de_jogo_4(self):                             # Caso o método seja chamado, ela chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("LÓGICA DE JOGO")
+
+    def inteligencia_artificial_5(self):                    # Caso o método seja chamado, ela chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("INTELIGÊNCIA ARTIFICIAL")
+
+    def simulacao_fisica_6(self):                           # Caso o método seja chamado, ela chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("SIMULAÇÃO FISICA")
+
+    def teclado_7(self):                                    # Caso o método seja chamado, ela chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("TECLADO")
+
+    def mouse_8(self):                                      # Caso o método seja chamado, ela chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("MOUSE")
+
+    def internet_9(self):                                   # Caso o método seja chamado, ela chama o método adicionar para adicionar elemento no final da fila
+        self.adicionar("INTERNET")
+
+    def adicionar(self, elemento):
+        self.__eventos_nomes.append(elemento)               # Método para adicionar elemento no final da fila
+
+    def realizar_evento(self):                              # Método para mostrar o evento realizado e após sua execução remove o item da fila
+        for i in range(len(self.__eventos_ids)):
+            print("Fila: ",self.__eventos_nomes, "\n")
+            print("Evento {} executado".format(self.__eventos_nomes[0]),"\n")
+            del(self.__eventos_nomes[0])
+        print("Fila: ", self.__eventos_nomes)
+
+
+''''' Escolha o evento a ser realizado através de sua ID ou NOME da forma descrita abaixo
+     
+     ID - EVENTO
+     
+     1 - COLISAO
+     2 - ATUALIZAÇÃO DE TELA
+     3 - PARTICULAS
+     4 - LÓGICA DE JOGO
+     5 - INTELIGÊNCIA ARTIFICIAL
+     6 - SIMULAÇÃO FÍSICA
+     7 - TECLADO 
+     8 - MOUSE
+     9 - INTERNET
+'''''
+
+
+def main():
+    fila = Filas()
+    fila.eventos("COLISÃO")
+    fila.eventos("MOUSE")
+    fila.eventos(7)
+    fila.eventos("INTELIGÊNCIA ARTIFICIAL")
+    fila.eventos(2)
+    fila.eventos(3)
+    fila.eventos("INTERNET")
+    fila.prioridade()
+    fila.realizar_evento()
+
+main()
+
+''''' lógica: Após o instanciamento da classe fila, é chamado o método #eventos,que recebe como argumento o ID ou NOME do evento e faz a atribuição de 
+      uma ID para cada entrada, como sendo uma senha para a fila. Essa ID dará ao evento de entrada sua prioridade, pois quanto menor sua id, maior será sua prioridade,
+      pois após a atribuição de sua id será chamado o método #ordenação que guarda a id no vetor eventos_ids e a cada insersão de uma id, faz a ordenação do vetor
+      eventos_ids. Após o usuário concluir de chamar os eventos que deseja, ele chama o método #prioridade que varre o vetor eventos_ids (que está com as ids ordenadas) e a cada id
+      diferente chama um método que é relacionado aquela id. Por exemplo a id 1 chama o método #colisão_1 que adiciona no final do vetor eventos_nome o nome do evento relacionado a
+      determinada ID. Então sempre acontecerá do evento com a id menor (maior prioridade) ser inclusa primeiro na fila, e conseguentemente, será o primeiro a ser executado. Após os 2 
+      vetores estarem ordenados, é feito a execução e remoção dos eventos no método #realizar_evento. Usei duas filas, a fila eventos_nome e a fila eventos_ids'''''
