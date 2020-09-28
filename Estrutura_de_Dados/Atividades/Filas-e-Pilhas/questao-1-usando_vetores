@@ -1,0 +1,51 @@
+class Pilha:
+    def __init__(self):
+        self.__dados = []
+
+    def push(self, elemento):
+        self.__dados.append(elemento)
+
+    def is_empty(self):
+        return len(self.__dados) == 0  						# Verificar se a lista está vazia
+
+    def mostrar(self):
+        if (not self.is_empty()):  						# Se a lista não for vazia
+            print(self.__dados)
+
+    def palindromo(self, pilha):  						# Recebe uma pilha como argumento
+        if (not self.is_empty()):  						# Se a lista não for vazia
+            pilhainversa = Pilha()  						# Criando uma pilha adicional
+            for i in range(len(pilha.__dados) - 1, -1, -1):  			# Varrendo a pilha passada como argumento ao inverso
+                pilhainversa.__dados.append(pilha.__dados[i])  			# Os valores invertido são inseridos na pilha adicional
+            for i in range(len(
+                    pilha.__dados) - 1):  					# Laço para verificar se a lista passada como argumento e a lista adicional são iguais
+                if pilhainversa.__dados[i] is not pilha.__dados[i]:
+                    return ("Pilha não palíndromo")  				# Se em alguma determinada posição for diferente, encerra o laço
+            return (
+                "Pilha palíndromo")  						# Se todos os valores forem iguais o laço se encerra após varrer todas as posições
+
+
+def main():
+    S = Pilha()
+    S.push("SSS")
+    S.push(1)
+    S.push(40)
+    S.push(1)
+    S.push("SSS")
+    print("Pilha S:")
+    print(S.palindromo(S), "\n")
+    A = Pilha()
+    A.push("A")
+    A.push(1)
+    A.push(40)
+    A.push(1)
+    A.push("AAA")
+    print("Pilha A:")
+    print(A.palindromo(A))
+
+
+main()
+
+
+
+
