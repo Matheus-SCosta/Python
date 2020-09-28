@@ -6,8 +6,7 @@ class Filas:
     def __str__(self):  								# Método para mostrar o conteudo da fila
         return str(self.__eventos_nomes)
 
-    def eventos(self,
-                evento):  								# Método que oferece ao usuário opção de chamar o evento pelo nome. O evento entra no método e recebe um id, e chama o método ordenação
+    def eventos(self, evento):  							# Método que oferece ao usuário opção de chamar o evento pelo nome. O evento entra no método e recebe um id, e chama o método ordenação
         if evento == "COLISÃO" or evento == 1:
             self.ordenacao(1)
         elif evento == "ATUALIZAÇÃO DE TELA" or evento == 2:
@@ -29,8 +28,7 @@ class Filas:
         else:
             return "Opção inválida"  							# Caso usuário informe um eventos não existente
 
-    def ordenacao(self,
-                  evento_id):  								# Método que recebe os IDS, adiciona no vetor eventos_ids e ordena o vetor eventos_ids
+    def ordenacao(self, evento_id):  							# Método que recebe os IDS, adiciona no vetor eventos_ids e ordena o vetor eventos_ids
         self.__eventos_ids.append(evento_id)  						# A cada evento de entrada é adicionado na fila evento_ids
         self.__eventos_ids.sort()  							# E a cada elemento que entra na fila eventos_ids, a fila é reordenada
 
