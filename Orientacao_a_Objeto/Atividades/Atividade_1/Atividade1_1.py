@@ -22,18 +22,18 @@ class Aluno:
 	def atribuir_cpf(self, cpf: int = None):
 		self.cpf = cpf
 
-	def exibir_informacoes(self):
-		print("Nome: ",self.nome)
-		print("Matricula: ",self.matricula)
-		print("Endereço: ", self.endereco)
-		print("CPF: ",self.cpf)
+	def exibir_todas_informacoes(self):
+		return self.nome, self.matricula, self.endereco, self.cpf
 
-
-if __name__=='__main__':
+if __name__ == 	'__main__':	
 	aluno1 = Aluno()
 	aluno1.atribuir_nome("Matheus Silva Da Costa")
 	aluno1.atribuir_matricula(20182380033)
 	aluno1.atribuir_endereco("Rua Aberlado Targino da Fonseca, Nº 626, Ernesto Geisel")
 	aluno1.atribuir_cpf(11807248445)
-	aluno1.exibir_informacoes()
+	nome, matricula, endereco, cpf = aluno1.exibir_todas_informacoes()	
+	print("Nome: ",nome)
+	print("Matricula: ",matricula)
+	print("Endereço: ",endereco)
+	print("CPF: ",cpf)
 
