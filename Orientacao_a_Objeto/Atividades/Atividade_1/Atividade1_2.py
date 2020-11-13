@@ -13,11 +13,11 @@ class Funcionario:
 		self.nome = nome
 
 	def atribuir_departamento(self, departamento: str = None):
-		self.departamento = departamento	
+		self.departamento = departamento
 
 	def atribuir_salario(self, salario: float = None):
 		self.salario = salario
-	
+
 	def atribuir_dataEntradaBanco(self, dataEntradaBanco: str = None):
 		self.dataEntradaBanco = dataEntradaBanco
 
@@ -25,17 +25,13 @@ class Funcionario:
 		self.rg = rg
 
 	def exibir_informacoes(self):
-		print("Nome funcionário: ",self.nome)
-		print("Departamento: ", self.departamento)
-		print("Salário: R${:.3f}".format(self.salario))
-		print("Data de entrada no banco: ", self.dataEntradaBanco)
-		print("Rg: ", self.rg)		 			
+		return self.nome, self.departamento, self.salario, self.dataEntradaBanco, self.rg
 
 	def receberAumento(self, percentual_aumento: str = None):
 		percentual_aumento = int(percentual_aumento)
 		salario_atual = self.salario
 		aumento = (salario_atual/100) * percentual_aumento
-		self.atribuir_salario(salario_atual + aumento) 
+		self.atribuir_salario(salario_atual + aumento)
 
 	def calcular_ganho_anual(self):
 		salario_atual = self.salario
@@ -50,15 +46,10 @@ if __name__=='__main__':
 	func1.atribuir_rg("5.623.80")
 	func1.atribuir_salario(4.250)
 	func1.receberAumento("20")
-	func1.exibir_informacoes()
-	print("Ganho total anual: {:.3f}".format(func1.calcular_ganho_anual()))
-
-	print(" =================== ")
-	func2 = Funcionario()
-	func2.nome = "João Alberto Nunes"
-	func2.departamento = "Rh"
-	func2.salario = 1.520
-	func2.dataEntradaBanco = "14/05/2020"
-	func2.rg = "4.659-18"
-	func2.exibir_informacoes()
-	print("Ganho total anual: {:.3f}".format(func2.calcular_ganho_anual()))
+	nome, departamento, salario, dataEntradaBanco, rg = func1.exibir_informacoes()
+	print("Nome funcionário: ", nome)
+	print("Departamento: ", departamento)
+	print("Salário: R${:.3f}".format(salario))
+	print("Data de entrada no banco: ", dataEntradaBanco)
+	print("Rg: ", rg)
+	print("Ganho total anual: R${:.3f}".format(func1.calcular_ganho_anual()))
