@@ -28,10 +28,12 @@ class Aluno:
 		print("Endereço: ", self.endereco)
 		print("CPF: ",self.cpf)
 
-aluno1 = Aluno()
-aluno1.atribuir_nome("Matheus Silva Da Costa")
-aluno1.atribuir_matricula(20182380033)
-aluno1.atribuir_endereco("Rua Aberlado Targino da Fonseca, Nº 626, Ernesto Geisel")
-aluno1.atribuir_cpf(11807248445)
-aluno1.exibir_informacoes()
+
+if __name__=='__main__':
+	aluno1 = Aluno()
+	aluno1.atribuir_nome("Matheus Silva Da Costa")
+	aluno1.atribuir_matricula(20182380033)
+	aluno1.atribuir_endereco("Rua Aberlado Targino da Fonseca, Nº 626, Ernesto Geisel")
+	aluno1.atribuir_cpf(11807248445)
+	aluno1.exibir_informacoes()
 
