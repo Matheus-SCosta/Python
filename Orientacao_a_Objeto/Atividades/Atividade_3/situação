@@ -1,0 +1,4 @@
+Implemente uma estrutura de classes que representam tipos de Programas em stream. De um lado temos Filmes (com nome, ano, duração e numeroLikes) e do outro temos as Séries ( com nome, ano, temporadas, numeroLikes).
+Todo filme precisa ter um método para informar se haverá pré-estreia ou não e sua data.
+Toda série precisa de um método que informe se há e quais são os spinoffs dela.
+Utilize herança, organize o projeto em pacotes e teste seu projeto. 
