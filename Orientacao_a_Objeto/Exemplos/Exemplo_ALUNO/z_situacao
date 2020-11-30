@@ -1,0 +1,1 @@
+Implementar uma classe aluno ifpb que terá nome, endereco, sexo, turma e matricula, e uma classe aluno intercâmbio que terá nome, endereco, sexo, turma, faculdade de origem e passaporte utilizando herança
