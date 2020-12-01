@@ -16,7 +16,6 @@ if __name__ == '__main__':
 	print("Ano de estreia: ",BetterCallSaul.ano)
 	print("Número de Likes: ",BetterCallSaul.numeroLikes)
 	print("Temporadas: ",BetterCallSaul.temporadas)
-	print(BetterCallSaul.spinoffs)
 	print(BetterCallSaul.spinoff())
 
 	print("\n=====================================\n")
