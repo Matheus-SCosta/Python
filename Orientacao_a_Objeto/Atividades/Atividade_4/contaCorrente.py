@@ -23,7 +23,7 @@ class ContaCorrente(ContaBancaria):
 		self.saldo = self.saldo + (valorDeposito - self.__taxaOperacao)	
 
 	def __str__(self):
-		return f"Saldo: R${self.saldo} | Numero da conta: {self.numeroConta} | Taxa Operação: {self.__taxaOperacao}%"
+		return f"Saldo: R${self.saldo} | Numero da conta: {self.numeroConta} | Taxa Operação: {self.__taxaOperacao}"
 
 
 	taxaOperacao = property(get_taxaOperacao, set_taxaOperacao)
