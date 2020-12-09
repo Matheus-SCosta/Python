@@ -27,6 +27,6 @@ class ContaPoupanca(ContaBancaria):
 		self.__credito = credito
 
 	def __str__(self):
-		return f"Saldo: R${self.saldo} | Numero da conta: {self.numeroConta} | Crédito: {self.__credito}"
+		return f"Saldo: R${self.saldo} | Numero da conta: {self.numeroConta} | Crédito: R${self.__credito}"
 
 	credito = property(get_credito, set_credito)
