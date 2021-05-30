@@ -23,69 +23,78 @@ while True:
             msg = msg.decode().split()
             print(msg)
             if msg[0].lower() == 'connection':
-                endereco = ''.join(msg[2:])
-                enderecolocal = '127.0.0.1'
+                domain = ''.join(msg[2:])
+                local_ip_address = '127.0.0.1'
+
+                # Utilizando da biblioteca os para verificar informações de nome e sistema operacional do servidor, e utilizando a biblioteca subprocess para verificar informações do endereçamento IP do servidor
+                server_data = os.uname()
+                name_server = server_data.nodename
+                operational_system = server_data.sysname
+                ip_server_address = subprocess.run(['hostname', '-I'], stdout=subprocess.PIPE)
+                ip_server_address = ip_server_address.stdout.decode('utf-8')
 
                 
                 if msg[1].lower() == '-p':
                     # Utilizando da biblioteca subprocess para fazer verificar as conexões estabelecidas do servidor
-                    netstat = subprocess.run(['netstat','-nt'], stdout=subprocess.PIPE)
-                    comando_netstat = netstat.stdout.decode('utf-8')
+                    active_connections = subprocess.run(['netstat','-nt'], stdout=subprocess.PIPE)
+                    active_connections = active_connections.stdout.decode('utf-8')
+                    data_to_transfer = name_server + " " + operational_system + " " + ip_server_address + active_connections
                     # Encaminhando mensagem ao cliente
-                    con.send(str.encode(comando_netstat))
+                    con.send(str.encode(data_to_transfer))
                 
                 
-                elif msg[1].lower() == '-c':
+                elif msg[1].lower() == '-c': 
                     # Usando utilitário de dns para tradução de endereço IP
-                    dns = subprocess.run(['host', endereco], stdout=subprocess.PIPE) 
-                    comando_dns = dns.stdout.decode('utf-8')
-                    comando_dns = comando_dns.split()
+                    dns = subprocess.run(['host', domain], stdout=subprocess.PIPE) 
+                    dns = dns.stdout.decode('utf-8')
+                    dns = dns.split()
                     # Encontrar endereço ip do servidor
-                    for i in range(len(comando_dns)): 
-                        if comando_dns[i] == "address":
-                            endereco_ip = comando_dns[i+1]
+                    for i in range(len(dns)): 
+                        if dns[i] == "address":
+                            domain_ip_address = dns[i+1]
                             break
-                    # Utilizando da biblioteca subprocess para fazer o teste de conexão        
-                    ping = subprocess.run(['ping','-c', '4', endereco_ip], stdout=subprocess.PIPE) 
-                    # Fazendo teste de conectividade com o utilitário de icmp com o endereço ip do dns passado como argumento
-                    comando_ping = ping.stdout.decode('utf-8')
-                    divisao_ping = comando_ping.split()
+                    # Utilizando da biblioteca subprocess para fazer o teste de conexão e fazendo teste de conectividade com o utilitário de icmp com o endereço ip do dns passado como argumento
+                    testing_connectivity = subprocess.run(['ping','-c', '4', domain_ip_address], stdout=subprocess.PIPE) 
+                    testing_connectivity = testing_connectivity.stdout.decode('utf-8')
+                    testing_connectivity = testing_connectivity.split()
                     # Verificando se há pacotes recebidos do ping, caso tenha significa que o servidor local tem conexões externas
-                    if int(divisao_ping[48]) > 0:  
+                    if int(testing_connectivity[48]) > 0:  
                         status = "Server with external connection"
                     else:
                         status = "Server without external connection"
                     # Mensagem que será enviada para o cliente sendo guardada em uma variável    
-                    msg_ping = str.encode('{} packets transmitted and {} packets received. {} to {}'.format(divisao_ping[45], divisao_ping[48], status, endereco))
+                    data_to_transfer = '{} packets transmitted and {} packets received. {} to DNS {}'.format(testing_connectivity[45], testing_connectivity[48], status, domain)
+                    data_to_transfer = name_server + " " + operational_system + " " + ip_server_address + data_to_transfer
                     # Mensagem enviada ao cliente
-                    con.send(msg_ping) 
+                    con.send(str.encode(data_to_transfer)) 
 
                 
                 elif msg[1].lower() == '-a':
                     # Utilizando da biblioteca subprocess para verificar as portas abertas no servidor
-                    nmap = subprocess.run(['nmap', enderecolocal], stdout=subprocess.PIPE)
-                    comando_nmap = nmap.stdout.decode('utf-8')
-                    # Mensagem enviada ao cliente
-                    con.send(str.encode(comando_nmap))
+                    open_doors = subprocess.run(['nmap', local_ip_address], stdout=subprocess.PIPE)
+                    open_doors = open_doors.stdout.decode('utf-8')
+                    data_to_transfer = name_server + " " + operational_system + " " + ip_server_address + open_doors
+                    # Encaminhando mensagem ao cliente
+                    con.send(str.encode(data_to_transfer))
                 
                 
                 else:
-                    endereco = ''.join(msg[1:])
-                    dns = subprocess.run(['host', endereco], stdout=subprocess.PIPE) # Usando utilitário de dns para tradução de endereço IP
-                    comando_dns = dns.stdout.decode('utf-8')
-                    comando_dns = comando_dns.split()
-                    for i in range(len(comando_dns)): # Encontrar endereço ip do servidor
-                        if comando_dns[i] == "address":
-                            endereco_ip = comando_dns[i+1]
+                    domain = ''.join(msg[1:])
+                    dns = subprocess.run(['host', domain], stdout=subprocess.PIPE) # Usando utilitário de dns para tradução de endereço IP
+                    dns = dns.stdout.decode('utf-8')
+                    dns = dns.split()
+                    for i in range(len(dns)): # Encontrar endereço ip do servidor
+                        if dns[i] == "address":
+                            domain_ip_address = dns[i+1]
                             break
-                    ping = subprocess.run(['ping','-c', '4', endereco_ip], stdout=subprocess.PIPE)
-                    netstat = subprocess.run(['netstat','-nt'], stdout=subprocess.PIPE)
-                    nmap = subprocess.run(['nmap', enderecolocal], stdout=subprocess.PIPE)
-                    comando_netstat = netstat.stdout.decode('utf-8')                        
-                    comando_ping = ping.stdout.decode('utf-8')
-                    comando_nmap = nmap.stdout.decode('utf-8')
-                    todos = comando_nmap + comando_ping + comando_netstat + endereco
-                    con.send(str.encode(todos))
+                    testing_connectivity = subprocess.run(['ping','-c', '4', domain_ip_address], stdout=subprocess.PIPE)
+                    testing_connectivity = testing_connectivity.stdout.decode('utf-8')
+                    active_connections = subprocess.run(['netstat','-nt'], stdout=subprocess.PIPE)
+                    active_connections = active_connections.stdout.decode('utf-8')                       
+                    open_doors = subprocess.run(['nmap', local_ip_address], stdout=subprocess.PIPE)
+                    open_doors = open_doors.stdout.decode('utf-8') 
+                    data_to_transfer = name_server + " " + operational_system + " " + ip_server_address + open_doors + testing_connectivity + active_connections + domain
+                    con.send(str.encode(data_to_transfer))
                         
             # QUIT
             elif msg[0].lower() == 'quit':
