@@ -59,7 +59,7 @@ def main():
                 print("\n-----------------------------------------------------")
                 print("\nTesting external server connection\n")
                 print(message[1])
-                print("\n\n",message[2], "\n\n",message[3], "\n",message[4],"\n",message[5],"\n")
+                print("\n\n",message[2], "\n\n","HTTP version and status: ",message[3], "\n",message[4],"\n",message[5],"\n")
                 
                 
 
@@ -107,7 +107,7 @@ def main():
             break
         
         else:
-            print(cmd[0])    
+            print('404 Invalid Command')
             print('Consulte "help"')
 
 def help():
