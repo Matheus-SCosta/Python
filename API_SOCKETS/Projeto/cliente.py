@@ -4,7 +4,7 @@ import sys
 import os
 
 TAM_MSG = 7000
-HOST = '127.0.0.1'
+HOST = '127.0.0.1'  # Endereço ip servidor
 PORT = 40000
 
 if len(sys.argv) > 1:

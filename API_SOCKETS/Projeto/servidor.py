@@ -11,7 +11,7 @@ serv = (HOST, PORT)
 sock.bind(serv)
 sock.listen(50)
 
-def load():
+def main():
     while True:
         try:
             con, cliente = sock.accept()
@@ -60,7 +60,7 @@ def load():
                 elif msg[0].lower() == 'quit':
                     break
                 else:
-                    con.send(str.encode('Invalid Command'))
+                    con.send(str.encode('404 Invalid Command'))
 
             print('Cliente desconectado', cliente)
             con.close()
@@ -133,4 +133,4 @@ def OpenDoors(local_ip_address):
     open_doors = open_doors.stdout.decode('utf-8')
     return open_doors
 
-load()        
+main()        
