@@ -54,7 +54,7 @@ def main():
                 
                 
                     else:
-                        con.send(str.encode('Invalid Command'))
+                        con.send(str.encode('404 Invalid Command'))
                         
                 # QUIT
                 elif msg[0].lower() == 'quit':
