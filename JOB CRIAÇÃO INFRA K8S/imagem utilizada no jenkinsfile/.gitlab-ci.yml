@@ -1,0 +1,19 @@
+stages:
+  - docker_build
+
+variables:
+  PROJECT_VERSION: newjenkins
+  DOCKER_DRIVER: overlay2
+  ECR_REPO: 2615738927488.dkr.ecr.us-east-1.amazonaws.com/$CI_PROJECT_PATH
+  IMAGE_NAME: $CI_PROJECT_PATH
+
+docker_build:
+  stage: docker_build
+  image: registry.ct.dk.th/imagem/docker_aws:1.0.0
+  script:
+    - $(aws ecr get-login --no-include-email --region us-east-1)
+    - docker build -t $IMAGE_NAME .
+    - docker tag $IMAGE_NAME:latest $ECR_REPO:$PROJECT_VERSION
+    - docker push $ECR_REPO:$PROJECT_VERSION
+  tags:
+    - docker
